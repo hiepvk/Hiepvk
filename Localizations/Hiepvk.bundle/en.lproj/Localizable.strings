@@ -1,0 +1,36 @@
+// About
+"ABOUT" = "About";
+
+"VERSION" = "Version";
+"VERSION_CHECK" = "Tap to check for updates!";
+
+"QUIT_YOUTUBE" = "Quit YouTube";
+
+"RESTART_YOUTUBE" = "Restart YouTube to apply changes";
+
+// Hide
+
+"NO_ADS" = "Remove ads";
+"NO_ADS_DESC" = "Removes in-app ads.";
+"PLAY_BACK" = "Background playback";
+"PLAY_BACK_DESC" = "Enables background playback.";
+
+"NO_YT_LOGO" = "Remove YouTube logo";
+"NO_YT_LOGO_DESC" = "Removes YouTube logo in the Navigation bar.";
+"PRE_YT_LOGO" = "Set Premium YouTube logo";
+"PRE_YT_LOGO_DESC" = "Sets Premium YouTube logo in the Navigation bar.";
+
+"HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
+"HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
+
+"UN_SHORTS" = "Hide Shorts";
+"UN_SHORTS_DESC" = "Hide Shorts on the home";
+
+"HIDE_SUPER_THANKS" = "Hide \"Buy Super Thanks\" banner";
+"HIDE_SUPER_THANKS_DESC" = "";
+
+"HIDE_SUBCRIPTIONS" = "Hide subscriptions button";
+"HIDE_SUBCRIPTIONS_DESC" = "";
+
+"DISABLE_RESUME_TO_SHORTS" = "Disable resume to Shorts";
+"DISABLE_RESUME_TO_SHORTS_DESC" = "If you close YouTube while watching Shorts, this prevents it from automatically resuming the next time you reopen the app";
