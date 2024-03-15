@@ -8,23 +8,29 @@
 
 "RESTART_YOUTUBE" = "Restart YouTube to apply changes";
 
-// Hide
+// GENERAL
+"GENERAL" = "General";
 
 "NO_ADS" = "Remove ads";
 "NO_ADS_DESC" = "Removes in-app ads.";
+
 "PLAY_BACK" = "Background playback";
 "PLAY_BACK_DESC" = "Enables background playback.";
 
 "NO_YT_LOGO" = "Remove YouTube logo";
 "NO_YT_LOGO_DESC" = "Removes YouTube logo in the Navigation bar.";
+
 "PRE_YT_LOGO" = "Set Premium YouTube logo";
 "PRE_YT_LOGO_DESC" = "Sets Premium YouTube logo in the Navigation bar.";
 
 "HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
 
+// SHORTS
+"SHORTS" = "Shorts";
+
 "UN_SHORTS" = "Hide Shorts";
-"UN_SHORTS_DESC" = "Hide Shorts on the home";
+"UN_SHORTS_DESC" = "Hides Shorts videos from Homepage, Recommended etc. (Not applied to Watch history)";
 
 "HIDE_SUPER_THANKS" = "Hide \"Buy Super Thanks\" banner";
 "HIDE_SUPER_THANKS_DESC" = "";
