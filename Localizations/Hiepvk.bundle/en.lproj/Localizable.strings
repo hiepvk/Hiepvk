@@ -17,11 +17,11 @@
 "PLAY_BACK" = "Background playback";
 "PLAY_BACK_DESC" = "Enables background playback.";
 
-"NO_YT_LOGO" = "Remove YouTube logo";
-"NO_YT_LOGO_DESC" = "Removes YouTube logo in the Navigation bar.";
+"NO_LOGO" = "Remove YouTube logo";
+"NO_LOGO_DESC" = "Removes YouTube logo in the Navigation bar.";
 
-"PRE_YT_LOGO" = "Set Premium YouTube logo";
-"PRE_YT_LOGO_DESC" = "Sets Premium YouTube logo in the Navigation bar.";
+"PRE_LOGO" = "Set Premium YouTube logo";
+"PRE_LOGO_DESC" = "Sets Premium YouTube logo in the Navigation bar.";
 
 "HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
