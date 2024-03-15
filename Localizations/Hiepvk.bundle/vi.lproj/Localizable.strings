@@ -12,7 +12,7 @@
 "GENERAL" = "Chung";
 
 "NO_ADS" = "Xoá quảng cáo";
-"NO_ADS_DESC" = "Xoá quảng cáo tróng ứng dụng";
+"NO_ADS_DESC" = "Xoá quảng cáo trong ứng dụng";
 
 "PLAY_BACK" = "Phát trong nền";
 "PLAY_BACK_DESC" = "Cho phép phát trong nền";
