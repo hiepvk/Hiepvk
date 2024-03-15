@@ -8,26 +8,32 @@
 
 "RESTART_YOUTUBE" = "Khởi động lại YouTube để áp dụng các thay đổi";
 
-// Hide
+// GENERAL
+"GENERAL" = "Chung";
 
 "NO_ADS" = "Xoá quảng cáo";
 "NO_ADS_DESC" = "Xoá quảng cáo tróng ứng dụng";
+
 "PLAY_BACK" = "Phát trong nền";
 "PLAY_BACK_DESC" = "Cho phép phát trong nền";
 
 "NO_YT_LOGO" = "Xóa biểu tượng YouTube";
 "NO_YT_LOGO_DESC" = "Xóa biểu tượng YouTube trong thanh điều hướng.";
+
 "PRE_YT_LOGO" = "Đặt biểu tượng YouTube Premium";
 "PRE_YT_LOGO_DESC" = "Đặt biểu tượng YouTube Premium trong thanh điều hướng.";
 
 "HIDE_HOVER_CARD" = "Ẩn video dạng thumbnails (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Ẩn thumbnail của các video đề xuất xuất hiện ở cuối video.";
 
-"UN_SHORTS" = "Ẩn Shorts";
-"UN_SHORTS_DESC" = "Ẩn Shorts ở trang chủ";
+// SHORTS
+"SHORTS" = "Shorts";
 
-"HIDE_SUPER_THANKS" = "Ẩn biểu ngữ 'Mua ảnh động Super Thanks'";
-"HIDE_SUPER_THANKS_DESC" = "Ẩn biểu ngữ 'Mua ảnh động Super Thanks'.";
+"UN_SHORTS" = "Ẩn Shorts";
+"UN_SHORTS_DESC" = "Ẩn Shorts khỏi Trang chủ, Được đề xuất, v.v. (Không áp dụng cho Lịch sử xem)";
+
+"HIDE_SUPER_THANKS" = "Ẩn biểu ngữ \"Mua ảnh động Super Thanks\"";
+"HIDE_SUPER_THANKS_DESC" = "Ẩn biểu ngữ \"Mua ảnh động Super Thanks\" trong Shorts.";
 
 "HIDE_SUBCRIPTIONS" = "Ẩn nút Đăng ký kênh";
 "HIDE_SUBCRIPTIONS_DESC" = "Ẩn nút Đăng ký kênh khi tạm dừng Shorts.";
