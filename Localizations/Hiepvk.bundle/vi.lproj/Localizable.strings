@@ -17,11 +17,11 @@
 "PLAY_BACK" = "Phát trong nền";
 "PLAY_BACK_DESC" = "Cho phép phát trong nền";
 
-"NO_YT_LOGO" = "Xóa biểu tượng YouTube";
-"NO_YT_LOGO_DESC" = "Xóa biểu tượng YouTube trong thanh điều hướng.";
+"NO_LOGO" = "Xóa biểu tượng YouTube";
+"NO_LOGO_DESC" = "Xóa biểu tượng YouTube trong thanh điều hướng.";
 
-"PRE_YT_LOGO" = "Đặt biểu tượng YouTube Premium";
-"PRE_YT_LOGO_DESC" = "Đặt biểu tượng YouTube Premium trong thanh điều hướng.";
+"PRE_LOGO" = "Đặt biểu tượng YouTube Premium";
+"PRE_LOGO_DESC" = "Đặt biểu tượng YouTube Premium trong thanh điều hướng.";
 
 "HIDE_HOVER_CARD" = "Ẩn video dạng thumbnails (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Ẩn thumbnail của các video đề xuất xuất hiện ở cuối video.";
