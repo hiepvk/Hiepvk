@@ -80,14 +80,18 @@ extern NSBundle *HiepvkBundle();
     ];
     [sectionItems addObject:exitYT];
 
-    //Hide
+    # pragma mark - General
+    SECTION_HEADER(LOC(@"GENERAL"));
+
     SWITCH_ITEM2(LOC(@"NO_ADS"), LOC(@"NO_ADS_DESC"), @"noAds_enabled");
     SWITCH_ITEM(LOC(@"PLAY_BACK"), LOC(@"PLAY_BACK_DESC"), @"backgroundPlayback_enabled");
-
     SWITCH_ITEM2(LOC(@"NO_YT_LOGO"), LOC(@"NO_YT_LOGO_DESC"), @"noYTLogo_enabled");
     SWITCH_ITEM2(LOC(@"PRE_YT_LOGO"), LOC(@"PRE_YT_LOGO_DESC"), @"premiumYTLogo_enabled");
-
     SWITCH_ITEM2(LOC(@"HIDE_HOVER_CARD"), LOC(@"HIDE_HOVER_CARD_DESC"), @"hideHoverCards_enabled");
+
+    # pragma mark - Shorts
+    SECTION_HEADER(LOC(@"SHORTS"));
+
     SWITCH_ITEM(LOC(@"UN_SHORTS"), LOC(@"UN_SHORTS_DESC"), @"un_shorts_enabled");
     SWITCH_ITEM2(LOC(@"HIDE_SUPER_THANKS"), LOC(@"HIDE_SUPER_THANKS_DESC"), @"hideBuySuperThanks_enabled");
     SWITCH_ITEM2(LOC(@"HIDE_SUBCRIPTIONS"), LOC(@"HIDE_SUBCRIPTIONS_DESC"), @"hideSubcriptions_enabled");
