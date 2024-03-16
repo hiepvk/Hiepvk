@@ -12,12 +12,6 @@
 }
 %end
 
-// Workaround
-//%hook YTDataUtils
-//+ (id)spamSignalsDictionary { return nil; }
-//+ (id)spamSignalsDictionaryWithoutIDFA { return //nil; }
-//%end
-
 // https://github.com/PoomSmart/YouTube-X
 // Disable Ads
 %hook YTIPlayerResponse
