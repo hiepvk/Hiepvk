@@ -5,5 +5,5 @@ Description: A lightweight YouTube improvement tweak.
 Maintainer: Hiepvk
 Author: Hiepvk
 Section: Tweaks
-Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 11.0)
+Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 14.0)
 
