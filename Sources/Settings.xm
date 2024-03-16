@@ -97,7 +97,7 @@ extern NSBundle *HiepvkBundle();
     SWITCH_ITEM2(LOC(@"HIDE_SUBCRIPTIONS"), LOC(@"HIDE_SUBCRIPTIONS_DESC"), @"hideSubcriptions_enabled");
     SWITCH_ITEM2(LOC(@"DISABLE_RESUME_TO_SHORTS"), LOC(@"DISABLE_RESUME_TO_SHORTS_DESC"), @"disableResumeToShorts");
 
-    # pragma title
+    // title
 
     if ([settingsViewController respondsToSelector:@selector(setSectionItems:forCategory:title:icon:titleDescription:headerHidden:)])
         [settingsViewController setSectionItems:sectionItems forCategory:HiepvkSection title:@"Hiepvk" icon:nil titleDescription:LOC(@"TITLE DESCRIPTION") headerHidden:YES];
