@@ -42,41 +42,11 @@
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
 #define YT_NAME @"YouTube"
 
-@interface YTSingleVideoController ()
-- (float)playbackRate;
-- (void)setPlaybackRate:(float)arg1;
-@end
-
-@interface YTPlayerViewController ()
-- (YTSingleVideoController *)activeVideo;
-@end
-
 // IAmYouTube
 @interface SSOConfiguration : NSObject
 @end
 
-@interface PlayerManager : NSObject
-- (float)progress;
-@end
-
-@interface YTSegmentableInlinePlayerBarView
-@property (nonatomic, assign, readwrite) BOOL enableSnapToChapter;
-@end
-
-@interface YTPlaylistHeaderViewController: UIViewController
-@property UIButton *downloadsButton;
-@end
-
-@interface YTISlimMetadataButtonSupportedRenderers : NSObject
-- (id)slimButton_buttonRenderer;
-- (id)slimMetadataButtonRenderer;
-@end
-
-// YTAutoFullScreen
-@interface YTPlayerViewController (YTAFS)
-- (void)autoFullscreen;
-@end
-//
+// Hide "Buy Super Thanks" banner
 @interface _ASDisplayView : UIView
 @end
 
