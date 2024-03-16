@@ -1,9 +1,9 @@
-Package: com.vkh.tweaks
-Name: Hiepvk
+Package: com.vkh.yt
+Name: Hiepvk YT
 Architecture: iphoneos-arm
-Description: 
+Description: A lightweight YouTube improvement tweak.
 Maintainer: hiepvk
 Author: Hiepvk
 Section: Tweaks
-Depends: mobilesubstrate (>= 0.9.5000)
+Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 11.0)
 
