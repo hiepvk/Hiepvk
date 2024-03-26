@@ -26,8 +26,8 @@
 "HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
 
-"HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
-"HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
+"YOU_ARE_THERE" = "Hide End screens hover cards (YTNoHoverCards)";
+"YOU_ARE_THERE_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
 
 // SHORTS
 "SHORTS" = "Shorts";
