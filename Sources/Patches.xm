@@ -80,7 +80,7 @@
 
 %end
 
-//YouAreThere https://github.com/PoomSmart/YouAreThere
+// YouAreThere - https://github.com/PoomSmart/YouAreThere
 %hook YTColdConfig
 
 - (BOOL)enableYouthereCommandsOnIos { return IS_ENABLED(@"YouAreThere_enabled") ? YES : NO; }
