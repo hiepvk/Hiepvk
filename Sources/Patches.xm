@@ -80,6 +80,19 @@
 
 %end
 
+//YouAreThere https://github.com/PoomSmart/YouAreThere
+%hook YTColdConfig
+
+- (BOOL)enableYouthereCommandsOnIos { return IS_ENABLED(@"YouAreThere_enabled") ? YES : NO; }
+
+%end
+
+%hook YTYouThereController
+
+- (BOOL)shouldShowYouTherePrompt { return IS_ENABLED(@"YouAreThere_enabled") ? YES : NO; }
+
+%end
+
 //YTNoPaidPromo
 %hook YTMainAppVideoPlayerOverlayViewController
 
