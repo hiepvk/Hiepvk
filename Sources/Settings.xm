@@ -88,6 +88,7 @@ extern NSBundle *HiepvkBundle();
     SWITCH_ITEM2(LOC(@"NO_LOGO"), LOC(@"NO_LOGO_DESC"), @"noYTLogo_enabled");
     SWITCH_ITEM2(LOC(@"PRE_LOGO"), LOC(@"PRE_LOGO_DESC"), @"premiumYTLogo_enabled");
     SWITCH_ITEM2(LOC(@"HIDE_HOVER_CARD"), LOC(@"HIDE_HOVER_CARD_DESC"), @"hideHoverCards_enabled");
+    SWITCH_ITEM2(LOC(@"HIDE_HOVER_CARD"), LOC(@"HIDE_HOVER_CARD_DESC"), @"hideHoverCards_enabled");
 
     # pragma mark - Shorts
     SECTION_HEADER(LOC(@"SHORTS"));
