@@ -161,14 +161,6 @@ BOOL isSelf() {
         return YT_NAME;
     return %orig;
 }
-
-// Fix Google Sign in by @PoomSmart & @level3tjg
-- (NSDictionary *)infoDictionary {
-    NSMutableDictionary *info = %orig.mutableCopy;
-    NSString *altBundleIdentifier = info[@"ALTBundleIdentifier"];
-    if (altBundleIdentifier) info[@"CFBundleIdentifier"] = altBundleIdentifier;
-    return info;
-}
 %end
 
 // Fix login for YouTube 18.13.2 and higher - @BandarHL
