@@ -2,16 +2,6 @@
 
 # pragma mark - YouTube patches
 
-// Fix Google Sign in by @PoomSmart and @level3tjg
-%hook NSBundle
-- (NSDictionary *)infoDictionary {
-    NSMutableDictionary *info = %orig.mutableCopy;
-    if ([self isEqual:NSBundle.mainBundle])
-        info[@"CFBundleIdentifier"] = @"com.google.ios.youtube";
-    return info;
-}
-%end
-
 // https://github.com/PoomSmart/YouTube-X
 // Disable Ads
 %hook YTIPlayerResponse
