@@ -108,11 +108,13 @@ static NSString *accessGroupID() {
         return YT_NAME;
     return %orig;
 }
-// Fix Google Sign in by @PoomSmart & @level3tjg
+
+// Fix Google Sign in by @PoomSmart and @level3tjg
+%hook NSBundle
 - (NSDictionary *)infoDictionary {
     NSMutableDictionary *info = %orig.mutableCopy;
-    NSString *altBundleIdentifier = info[@"ALTBundleIdentifier"];
-    if (altBundleIdentifier) info[@"CFBundleIdentifier"] = altBundleIdentifier;
+    if ([self isEqual:NSBundle.mainBundle])
+        info[@"CFBundleIdentifier"] = @"com.google.ios.youtube";
     return info;
 }
 %end
