@@ -26,6 +26,9 @@
 "HIDE_HOVER_CARD" = "Ẩn video dạng thumbnails (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Ẩn thumbnail của các video đề xuất xuất hiện ở cuối video.";
 
+"YOU_ARE_THERE" = "Disable \"Video paused. Continue watching?\"";
+"YOU_ARE_THERE_DESC" = "Disable \"Video paused. Continue watching?\" popup in YouTube app when you play a long video.";
+
 // SHORTS
 "SHORTS" = "Shorts";
 
