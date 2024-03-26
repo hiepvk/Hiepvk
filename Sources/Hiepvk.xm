@@ -164,16 +164,6 @@ BOOL isSelf() {
 
 %end
 
-// Fix Google Sign in by @PoomSmart and @level3tjg
-%hook NSBundle
-- (NSDictionary *)infoDictionary {
-    NSMutableDictionary *info = %orig.mutableCopy;
-    if ([self isEqual:NSBundle.mainBundle])
-        info[@"CFBundleIdentifier"] = @"com.google.ios.youtube";
-    return info;
-}
-%end
-
 // Fix login for YouTube 18.13.2 and higher - @BandarHL
 %hook SSOKeychainHelper
 + (NSString *)accessGroup {
