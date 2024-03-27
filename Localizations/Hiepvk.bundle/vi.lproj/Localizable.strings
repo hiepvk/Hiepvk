@@ -29,6 +29,9 @@
 "YOU_ARE_THERE" = "Tắt \"Video tạm dừng. Tiếp tục xem?\"";
 "YOU_ARE_THERE_DESC" = "Tắt cửa sổ bật lên \"Video tạm dừng. Tiếp tục xem?\" trong ứng dụng YouTube khi bạn phát một video dài.";
 
+"HIDE_PAID_PROMOTION_CARDS" = "Ẩn banner quảng cáo được trả tiền";
+"HIDE_PAID_PROMOTION_CARDS_DESC" = "Ẩn banner 'Chứa nội dung được trả tiền để quảng cáo' trong một số video.";
+
 // SHORTS
 "SHORTS" = "Shorts";
 
