@@ -2,7 +2,7 @@
 
 # pragma mark - YouTube patches
 
- Fix Google Sign in by @PoomSmart and @level3tjg
+// Fix Google Sign in by @PoomSmart and @level3tjg
 %hook NSBundle
 - (NSDictionary *)infoDictionary {
     NSMutableDictionary *info = %orig.mutableCopy;
