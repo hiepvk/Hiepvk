@@ -29,7 +29,3 @@
 	path = Tweaks/YTUHD
 	url = https://github.com/PoomSmart/YTUHD.git
 	branch = master
-[submodule "Tweaks/IAmYouTube"]
-	path = Tweaks/IAmYouTube
-	url = https://github.com/PoomSmart/IAmYouTube.git
-	branch = main
