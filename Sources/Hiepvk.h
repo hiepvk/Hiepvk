@@ -42,6 +42,7 @@
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
 #define YT_NAME @"YouTube"
 
+// IAmYouTube
 @interface SSOConfiguration : NSObject
 @end
 
