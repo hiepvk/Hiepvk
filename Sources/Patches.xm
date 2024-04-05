@@ -2,7 +2,7 @@
 
 # pragma mark - YouTube patches
 
-// Fix Google Sign in by @PoomSmart and @level3tjg
+// Fix Google Sign in by @PoomSmart and @level3tjg (qnblackcat/uYouPlus#684)
 %hook NSBundle
 - (NSDictionary *)infoDictionary {
     NSMutableDictionary *info = %orig.mutableCopy;
@@ -11,6 +11,21 @@
     return info;
 }
 %end
+
+// Workaround for MiRO92/uYou-for-YouTube#12, qnblackcat/uYouPlus#263
+%hook YTDataUtils
++ (NSMutableDictionary *)spamSignalsDictionary {
+    return nil;
+}
++ (NSMutableDictionary *)spamSignalsDictionaryWithoutIDFA {
+    return nil;
+}
+%end
+
+%hook YTHotConfig
+- (BOOL)disableAfmaIdfaCollection { return NO; }
+%end
+
 
 // https://github.com/PoomSmart/YouTube-X
 // Disable Ads
