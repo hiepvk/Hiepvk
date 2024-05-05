@@ -20,8 +20,8 @@
 
 %hook YTDataUtils
 
-+ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
-+ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
++ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") @{}; }
++ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") @{}; }
 
 %end
 
@@ -88,7 +88,7 @@ NSData *cellDividerData;
     if (IS_ENABLED(@"noAds_enabled") && [model isKindOfClass:%c(YTISectionListRenderer)]) {
         NSMutableArray <YTISectionListSupportedRenderers *> *contentsArray = model.contentsArray;
         NSIndexSet *removeIndexes = [contentsArray indexesOfObjectsPassingTest:^BOOL(YTISectionListSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
-            if (![renderers isKindOfClass:%c(YTISectionListSupportedRenderers)])
+            if (IS_ENABLED(@"noAds_enabled") && ![renderers isKindOfClass:%c(YTISectionListSupportedRenderers)])
                 return NO;
             YTIItemSectionRenderer *sectionRenderer = renderers.itemSectionRenderer;
             YTIItemSectionSupportedRenderers *firstObject = [sectionRenderer.contentsArray firstObject];
