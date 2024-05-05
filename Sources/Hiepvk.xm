@@ -232,6 +232,10 @@ static NSString *accessGroupID() {
 %ctor {
     %init;
 
+    if (IS_ENABLED(@"noAds_enabled")) {
+        %init(gnoAds);
+    }
+    
     // Change the default value of some options
     NSArray *allKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
     if (![allKeys containsObject:@"YTVideoOverlay-YouQuality-Enabled"]) { 

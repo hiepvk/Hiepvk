@@ -12,33 +12,34 @@
 
 // https://github.com/PoomSmart/YouTube-X
 // Disable Ads
+%group gnoAds
 %hook YTIPlayerResponse
 
-- (BOOL)isMonetized { return IS_ENABLED(@"noAds_enabled") ? NO : YES; }
+- (BOOL)isMonetized { return NO; }
 
 %end
 
 %hook YTDataUtils
 
-+ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
-+ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
++ (id)spamSignalsDictionary { return @{}; }
++ (id)spamSignalsDictionaryWithoutIDFA { return @{}; }
 
 %end
 
 %hook YTAdsInnerTubeContextDecorator
 
-- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig(nil); }
+- (void)decorateContext:(id)context { %orig(nil); }
 
 %end
 
 %hook YTAccountScopedAdsInnerTubeContextDecorator
 
-- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig(nil); }
+- (void)decorateContext:(id)context { %orig(nil); }
 
 %end
 
 BOOL isAdString(NSString *description) {
-    if (IS_ENABLED(@"noAds_enabled") || [description containsString:@"brand_promo"]
+    if ([description containsString:@"brand_promo"]
         // || [description containsString:@"statement_banner"]
         // || [description containsString:@"product_carousel"]
         || [description containsString:@"shelf_header"]
@@ -59,14 +60,39 @@ BOOL isAdString(NSString *description) {
     return NO;
 }
 
+%hook YTInnerTubeCollectionViewController
+
+- (void)loadWithModel:(YTISectionListRenderer *)model {
+    if ([model isKindOfClass:%c(YTISectionListRenderer)]) {
+        NSMutableArray <YTISectionListSupportedRenderers *> *contentsArray = model.contentsArray;
+        NSIndexSet *removeIndexes = [contentsArray indexesOfObjectsPassingTest:^BOOL(YTISectionListSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
+            if (![renderers isKindOfClass:%c(YTISectionListSupportedRenderers)])
+                return NO;
+            YTIItemSectionRenderer *sectionRenderer = renderers.itemSectionRenderer;
+            YTIItemSectionSupportedRenderers *firstObject = [sectionRenderer.contentsArray firstObject];
+            YTIElementRenderer *elementRenderer = firstObject.elementRenderer;
+            NSString *description = [elementRenderer description];
+            return isAdString(description)
+                || [description containsString:@"product_carousel"]
+                || [description containsString:@"post_shelf"]
+                || [description containsString:@"statement_banner"];
+        }];
+        [contentsArray removeObjectsAtIndexes:removeIndexes];
+    }
+    %orig;
+}
+
+%end
+%end
+
 NSData *cellDividerData;
 
 %hook YTIElementRenderer
 
 - (NSData *)elementData {
     NSString *description = [self description];
-    if (IS_ENABLED(@"noAds_enabled") && [description containsString:@"cell_divider"]) {
-        if (IS_ENABLED(@"noAds_enabled") && !cellDividerData) cellDividerData = %orig;
+    if ([description containsString:@"cell_divider"]) {
+        if (!cellDividerData) cellDividerData = %orig;
         return cellDividerData;
     }
     if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
