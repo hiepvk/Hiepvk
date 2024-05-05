@@ -13,56 +13,97 @@
 // https://github.com/PoomSmart/YouTube-X
 // Disable Ads
 %hook YTIPlayerResponse
+
 - (BOOL)isMonetized { return IS_ENABLED(@"noAds_enabled") ? NO : YES; }
+
 %end
 
 %hook YTDataUtils
-+ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") ? nil : %orig; }
-+ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") ? nil : %orig; }
+
++ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") ? @{}; }
++ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") ? @{}; }
+
 %end
 
 %hook YTAdsInnerTubeContextDecorator
-- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig; }
+
+- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig(nil); }
+
 %end
 
 %hook YTAccountScopedAdsInnerTubeContextDecorator
-- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig; }
+
+- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig(nil); }
+
 %end
 
+BOOL isAdString(NSString *description) {
+    if (IS_ENABLED(@"noAds_enabled") && [description containsString:@"brand_promo"]
+        // || [description containsString:@"statement_banner"]
+        // || [description containsString:@"product_carousel"]
+        || [description containsString:@"shelf_header"]
+        || [description containsString:@"product_engagement_panel"]
+        || [description containsString:@"product_item"]
+        || [description containsString:@"text_search_ad"]
+        || [description containsString:@"text_image_button_layout"]
+        || [description containsString:@"carousel_headered_layout"]
+        || [description containsString:@"carousel_footered_layout"]
+        || [description containsString:@"full_width_square_image_layout"]
+        || [description containsString:@"full_width_portrait_image_layout"]
+        || [description containsString:@"square_image_layout"] // install app ad
+        || [description containsString:@"landscape_image_wide_button_layout"]
+        || [description containsString:@"video_display_full_buttoned_layout"]
+        || [description containsString:@"home_video_with_context"]
+        || [description containsString:@"feed_ad_metadata"])
+        return YES;
+    return NO;
+}
+
+NSData *cellDividerData;
+
 %hook YTIElementRenderer
+
 - (NSData *)elementData {
-    if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return nil;
-
     NSString *description = [self description];
-
-    NSArray *ads = @[@"brand_promo", @"product_carousel", @"product_engagement_panel", @"product_item", @"text_search_ad", @"text_image_button_layout", @"carousel_headered_layout", @"carousel_footered_layout", @"square_image_layout", @"landscape_image_wide_button_layout", @"feed_ad_metadata"];
-    if (IS_ENABLED(@"noAds_enabled") && [ads containsObject:description]) {
-        return [NSData data];
+    if (IS_ENABLED(@"noAds_enabled") && [description containsString:@"cell_divider"]) {
+        if (!cellDividerData) cellDividerData = %orig;
+        return cellDividerData;
     }
-
+    if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
+    // if (isAdString(description)) return cellDividerData;
     NSArray *shortsToRemove = @[@"shorts_shelf.eml", @"shorts_video_cell.eml", @"6Shorts"];
     for (NSString *shorts in shortsToRemove) {
         if (IS_ENABLED(@"un_shorts_enabled") && [description containsString:shorts] && ![description containsString:@"history*"]) {
             return nil;
         }
     }
-
     return %orig;
 }
+
 %end
 
-%hook YTSectionListViewController
+%hook YTInnerTubeCollectionViewController
+
 - (void)loadWithModel:(YTISectionListRenderer *)model {
-    if (IS_ENABLED(@"noAds_enabled")) {
+    if (IS_ENABLED(@"noAds_enabled") && [model isKindOfClass:%c(YTISectionListRenderer)]) {
         NSMutableArray <YTISectionListSupportedRenderers *> *contentsArray = model.contentsArray;
         NSIndexSet *removeIndexes = [contentsArray indexesOfObjectsPassingTest:^BOOL(YTISectionListSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
+            if (![renderers isKindOfClass:%c(YTISectionListSupportedRenderers)])
+                return NO;
             YTIItemSectionRenderer *sectionRenderer = renderers.itemSectionRenderer;
             YTIItemSectionSupportedRenderers *firstObject = [sectionRenderer.contentsArray firstObject];
-            return firstObject.hasPromotedVideoRenderer || firstObject.hasCompactPromotedVideoRenderer || firstObject.hasPromotedVideoInlineMutedRenderer;
+            YTIElementRenderer *elementRenderer = firstObject.elementRenderer;
+            NSString *description = [elementRenderer description];
+            return isAdString(description)
+                || [description containsString:@"product_carousel"]
+                || [description containsString:@"post_shelf"]
+                || [description containsString:@"statement_banner"];
         }];
         [contentsArray removeObjectsAtIndexes:removeIndexes];
-    } %orig;
+    }
+    %orig;
 }
+
 %end
 
 //PlayableInBackground
