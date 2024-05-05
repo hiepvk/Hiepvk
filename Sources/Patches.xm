@@ -38,7 +38,7 @@
 %end
 
 BOOL isAdString(NSString *description) {
-    if (IS_ENABLED(@"noAds_enabled") && [description containsString:@"brand_promo"]
+    if (IS_ENABLED(@"noAds_enabled") || [description containsString:@"brand_promo"]
         // || [description containsString:@"statement_banner"]
         // || [description containsString:@"product_carousel"]
         || [description containsString:@"shelf_header"]
