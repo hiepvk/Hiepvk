@@ -20,8 +20,8 @@
 
 %hook YTDataUtils
 
-+ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") @{}; }
-+ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") @{}; }
++ (id)spamSignalsDictionary { if (!IS_ENABLED(@"noAds_enabled")) @{}; }
++ (id)spamSignalsDictionaryWithoutIDFA { if (!IS_ENABLED(@"noAds_enabled")) @{}; }
 
 %end
 
