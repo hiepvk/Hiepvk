@@ -20,8 +20,8 @@
 
 %hook YTDataUtils
 
-+ (id)spamSignalsDictionary { if (!IS_ENABLED(@"noAds_enabled")) @{}; }
-+ (id)spamSignalsDictionaryWithoutIDFA { if (!IS_ENABLED(@"noAds_enabled")) @{}; }
++ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
++ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
 
 %end
 
@@ -66,7 +66,7 @@ NSData *cellDividerData;
 - (NSData *)elementData {
     NSString *description = [self description];
     if (IS_ENABLED(@"noAds_enabled") && [description containsString:@"cell_divider"]) {
-        if (!cellDividerData) cellDividerData = %orig;
+        if (IS_ENABLED(@"noAds_enabled") && !cellDividerData) cellDividerData = %orig;
         return cellDividerData;
     }
     if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
