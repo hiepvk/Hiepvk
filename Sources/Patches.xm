@@ -82,30 +82,6 @@ NSData *cellDividerData;
 
 %end
 
-%hook YTInnerTubeCollectionViewController
-
-- (void)loadWithModel:(YTISectionListRenderer *)model {
-    if (IS_ENABLED(@"noAds_enabled") && [model isKindOfClass:%c(YTISectionListRenderer)]) {
-        NSMutableArray <YTISectionListSupportedRenderers *> *contentsArray = model.contentsArray;
-        NSIndexSet *removeIndexes = [contentsArray indexesOfObjectsPassingTest:^BOOL(YTISectionListSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
-            if (IS_ENABLED(@"noAds_enabled") && ![renderers isKindOfClass:%c(YTISectionListSupportedRenderers)])
-                return NO;
-            YTIItemSectionRenderer *sectionRenderer = renderers.itemSectionRenderer;
-            YTIItemSectionSupportedRenderers *firstObject = [sectionRenderer.contentsArray firstObject];
-            YTIElementRenderer *elementRenderer = firstObject.elementRenderer;
-            NSString *description = [elementRenderer description];
-            return isAdString(description)
-                || [description containsString:@"product_carousel"]
-                || [description containsString:@"post_shelf"]
-                || [description containsString:@"statement_banner"];
-        }];
-        [contentsArray removeObjectsAtIndexes:removeIndexes];
-    }
-    %orig;
-}
-
-%end
-
 //PlayableInBackground
 %hook YTIPlayabilityStatus
 
