@@ -35,6 +35,7 @@
 #import "Tweaks/YouTubeHeader/YTVideoWithContextNode.h" // YouTube-X
 #import "Tweaks/YouTubeHeader/ELMCellNode.h" // YouTube-X
 #import "Tweaks/YouTubeHeader/ELMNodeController.h" // YouTube-X
+#import "Tweaks/YouTubeHeader/YTReelModel.h" // YouTube-X
 #import "Tweaks/YouTubeHeader/YTIElementRenderer.h"
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
