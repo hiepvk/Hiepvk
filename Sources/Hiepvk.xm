@@ -256,24 +256,35 @@ static NSString *accessGroupID() {
 
 %end
 
+%hook YTReelInfinitePlaybackDataSource
+
+- (void)setReels:(NSMutableOrderedSet <YTReelModel *> *)reels {
+    [reels removeObjectsAtIndexes:[reels indexesOfObjectsPassingTest:^BOOL(YTReelModel *obj, NSUInteger idx, BOOL *stop) {
+        return [obj respondsToSelector:@selector(videoType)] ? obj.videoType == 3 : NO;
+    }]];
+    %orig;
+}
+
+%end
+
 BOOL isAdString(NSString *description) {
     if ([description containsString:@"brand_promo"]
-        // || [description containsString:@"statement_banner"]
+        || [description containsString:@"carousel_footered_layout"]
+        || [description containsString:@"carousel_headered_layout"]
+        || [description containsString:@"feed_ad_metadata"]
+        || [description containsString:@"full_width_portrait_image_layout"]
+        || [description containsString:@"full_width_square_image_layout"]
+        || [description containsString:@"home_video_with_context"]
+        || [description containsString:@"landscape_image_wide_button_layout"]
         // || [description containsString:@"product_carousel"]
-        || [description containsString:@"shelf_header"]
         || [description containsString:@"product_engagement_panel"]
         || [description containsString:@"product_item"]
-        || [description containsString:@"text_search_ad"]
-        || [description containsString:@"text_image_button_layout"]
-        || [description containsString:@"carousel_headered_layout"]
-        || [description containsString:@"carousel_footered_layout"]
-        || [description containsString:@"full_width_square_image_layout"]
-        || [description containsString:@"full_width_portrait_image_layout"]
+        || [description containsString:@"shelf_header"]
+        // || [description containsString:@"statement_banner"]
         || [description containsString:@"square_image_layout"] // install app ad
-        || [description containsString:@"landscape_image_wide_button_layout"]
-        || [description containsString:@"video_display_full_buttoned_layout"]
-        || [description containsString:@"home_video_with_context"]
-        || [description containsString:@"feed_ad_metadata"])
+        || [description containsString:@"text_image_button_layout"]
+        || [description containsString:@"text_search_ad"]
+        || [description containsString:@"video_display_full_buttoned_layout"])
         return YES;
     return NO;
 }
@@ -291,8 +302,8 @@ BOOL isAdString(NSString *description) {
             YTIElementRenderer *elementRenderer = firstObject.elementRenderer;
             NSString *description = [elementRenderer description];
             return isAdString(description)
-                || [description containsString:@"product_carousel"]
                 || [description containsString:@"post_shelf"]
+                || [description containsString:@"product_carousel"]
                 || [description containsString:@"statement_banner"];
         }];
         [contentsArray removeObjectsAtIndexes:removeIndexes];
@@ -313,7 +324,7 @@ NSData *cellDividerData;
         if (!cellDividerData) cellDividerData = %orig;
         return cellDividerData;
     }
-    if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
+    if ([self respondsToSelector:@selector(hasCompatibilityOptions)] && self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
     // if (isAdString(description)) return cellDividerData;
     NSArray *shortsToRemove = @[@"shorts_shelf.eml", @"shorts_video_cell.eml", @"6Shorts"];
     for (NSString *shorts in shortsToRemove) {
