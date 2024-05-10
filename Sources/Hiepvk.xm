@@ -230,29 +230,28 @@ static NSString *accessGroupID() {
 
 // https://github.com/PoomSmart/YouTube-X
 // Disable Ads
-%group gnoAds
 %hook YTIPlayerResponse
 
-- (BOOL)isMonetized { return NO; }
+- (BOOL)isMonetized { return IS_ENABLED(@"noAds_enabled") ? NO : YES; }
 
 %end
 
 %hook YTDataUtils
 
-+ (id)spamSignalsDictionary { return @{}; }
-+ (id)spamSignalsDictionaryWithoutIDFA { return @{}; }
++ (id)spamSignalsDictionary { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
++ (id)spamSignalsDictionaryWithoutIDFA { return IS_ENABLED(@"noAds_enabled") ? @{} : %orig; }
 
 %end
 
 %hook YTAdsInnerTubeContextDecorator
 
-- (void)decorateContext:(id)context { %orig(nil); }
+- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig(nil); }
 
 %end
 
 %hook YTAccountScopedAdsInnerTubeContextDecorator
 
-- (void)decorateContext:(id)context { %orig(nil); }
+- (void)decorateContext:(id)context { if (!IS_ENABLED(@"noAds_enabled")) %orig(nil); }
 
 %end
 
@@ -289,6 +288,27 @@ BOOL isAdString(NSString *description) {
     return NO;
 }
 
+NSData *cellDividerData;
+
+%hook YTIElementRenderer
+
+- (NSData *)elementData {
+    NSString *description = [self description];
+    if ([description containsString:@"cell_divider"]) {
+        if (!cellDividerData) cellDividerData = %orig;
+        return cellDividerData;
+    }
+    if ([self respondsToSelector:@selector(hasCompatibilityOptions)] && self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
+    // if (isAdString(description)) return cellDividerData;
+    BOOL hasShorts = ([description containsString:@"shorts_shelf.eml"] || [description containsString:@"shorts_video_cell.eml"] || [description containsString:@"6Shorts"]) && (IS_ENABLED(@"un_shorts_enabled") && ![description containsString:@"history*"]);
+    BOOL hasShortsInHistory = [description containsString:@"compact_video.eml"] && [description containsString:@"youtube_shorts_"];
+
+    if (hasShorts || hasShortsInHistory) return cellDividerData;
+    return %orig;
+}
+
+%end
+
 %hook YTInnerTubeCollectionViewController
 
 - (void)loadWithModel:(YTISectionListRenderer *)model {
@@ -312,30 +332,6 @@ BOOL isAdString(NSString *description) {
 }
 
 %end
-%end
-
-NSData *cellDividerData;
-
-%hook YTIElementRenderer
-
-- (NSData *)elementData {
-    NSString *description = [self description];
-    if ([description containsString:@"cell_divider"]) {
-        if (!cellDividerData) cellDividerData = %orig;
-        return cellDividerData;
-    }
-    if ([self respondsToSelector:@selector(hasCompatibilityOptions)] && self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
-    // if (isAdString(description)) return cellDividerData;
-    NSArray *shortsToRemove = @[@"shorts_shelf.eml", @"shorts_video_cell.eml", @"6Shorts"];
-    for (NSString *shorts in shortsToRemove) {
-        if (IS_ENABLED(@"un_shorts_enabled") && [description containsString:shorts] && ![description containsString:@"history*"]) {
-            return nil;
-        }
-    }
-    return %orig;
-}
-
-%end
 
 //PlayableInBackground
 %hook YTIPlayabilityStatus
@@ -353,10 +349,6 @@ NSData *cellDividerData;
 //ex
 %ctor {
     %init;
-
-    if (IS_ENABLED(@"noAds_enabled")) {
-        %init(gnoAds);
-    }
 
     // Change the default value of some options
     NSArray *allKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
