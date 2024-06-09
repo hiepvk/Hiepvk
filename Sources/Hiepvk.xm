@@ -232,7 +232,7 @@ static NSString *accessGroupID() {
 // Disable Ads
 
 %group gnoAds
-%hook YTIPlayerResponse
+%hook%hook YTIPlayerResponse
 
 - (BOOL)isMonetized { return NO; }
 
@@ -285,6 +285,7 @@ BOOL isAdString(NSString *description) {
         || [description containsString:@"square_image_layout"] // install app ad
         || [description containsString:@"text_image_button_layout"]
         || [description containsString:@"text_search_ad"]
+        || [description containsString:@"video_display_full_layout"]
         || [description containsString:@"video_display_full_buttoned_layout"])
         return YES;
     return NO;
