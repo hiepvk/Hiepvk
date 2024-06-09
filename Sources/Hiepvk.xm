@@ -321,16 +321,18 @@ NSData *cellDividerData;
 
 - (NSData *)elementData {
     NSString *description = [self description];
+
     if ([description containsString:@"cell_divider"]) {
         if (!cellDividerData) cellDividerData = %orig;
         return cellDividerData;
     }
-    if ([self respondsToSelector:@selector(hasCompatibilityOptions)] && self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
+    if ([self respondsToSelector:@selector(hasCompatibilityOptions)] && self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData && cellDividerData && IS_ENABLED(@"noAds_enabled")) return cellDividerData;
     // if (isAdString(description)) return cellDividerData;
-    BOOL hasShorts = ([description containsString:@"shorts_shelf.eml"] || [description containsString:@"shorts_video_cell.eml"] || [description containsString:@"6Shorts"]) && (IS_ENABLED(@"un_shorts_enabled") && ![description containsString:@"history*"]);
+    BOOL hasShorts = ([description containsString:@"shorts_shelf.eml"] || [description containsString:@"shorts_video_cell.eml"] || [description containsString:@"6Shorts"]) && (IS_ENABLED(@"un_shorts_enabled") && ![description containsString:@"history*"];
     BOOL hasShortsInHistory = [description containsString:@"compact_video.eml"] && [description containsString:@"youtube_shorts_"];
 
-    if (hasShorts || hasShortsInHistory) return cellDividerData;
+    if ((hasShorts || hasShortsInHistory) && cellDividerData) return cellDividerData;
+
     return %orig;
 }
 
