@@ -232,7 +232,7 @@ static NSString *accessGroupID() {
 // Disable Ads
 
 %group gnoAds
-%hook%hook YTIPlayerResponse
+%hook YTIPlayerResponse
 
 - (BOOL)isMonetized { return NO; }
 
