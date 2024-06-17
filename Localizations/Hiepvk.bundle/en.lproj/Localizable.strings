@@ -17,9 +17,6 @@
 "PLAY_BACK" = "Background playback";
 "PLAY_BACK_DESC" = "Enables background playback.";
 
-"PRE_LOGO" = "Set Premium YouTube logo";
-"PRE_LOGO_DESC" = "Sets Premium YouTube logo in the Navigation bar.";
-
 "HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
 "HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
 
