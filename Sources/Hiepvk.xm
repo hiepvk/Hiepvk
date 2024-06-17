@@ -352,99 +352,12 @@ NSData *cellDividerData;
 
 %end
 
-// YouTube Premium Logo - @arichornlover & @bhackel
-%group gFakePremium
-%hook YTHeaderLogoController
-- (void)setTopbarLogoRenderer:(YTITopbarLogoRenderer *)renderer {
-    YTIIcon *iconImage = renderer.iconImage;
-    iconImage.iconType = 537;
-    %orig;
-}
-- (void)setPremiumLogo:(BOOL)isPremiumLogo {
-    isPremiumLogo = YES;
-    %orig;
-}
-- (BOOL)isPremiumLogo {
-    return YES;
-}
-%end
-
-%hook YTAppCollectionViewController
-%new
-- (void)uYouEnhancedFakePremiumModel:(YTISectionListRenderer *)model {
-    Class YTVersionUtilsClass = %c(YTVersionUtils);
-    NSString *appVersion = [YTVersionUtilsClass performSelector:@selector(appVersion)];
-    NSComparisonResult result = [appVersion compare:@"18.35.4" options:NSNumericSearch];
-    if (result == NSOrderedAscending) {
-        return;
-    }
-    NSUInteger yourVideosCellIndex = -1;
-    NSMutableArray <YTISectionListSupportedRenderers *> *overallContentsArray = model.contentsArray;
-    YTISectionListSupportedRenderers *supportedRenderers;
-    for (supportedRenderers in overallContentsArray) {
-        YTIItemSectionRenderer *itemSectionRenderer = supportedRenderers.itemSectionRenderer;
-        NSMutableArray <YTIItemSectionSupportedRenderers *> *subContentsArray = itemSectionRenderer.contentsArray;
-        YTIItemSectionSupportedRenderers *itemSectionSupportedRenderers;
-        for (itemSectionSupportedRenderers in subContentsArray) {
-            if ([itemSectionSupportedRenderers hasCompactLinkRenderer]) {
-                YTICompactLinkRenderer *compactLinkRenderer = [itemSectionSupportedRenderers compactLinkRenderer];
-                if ([compactLinkRenderer hasIcon]) {
-                    YTIIcon *icon = [compactLinkRenderer icon];
-                    if ([icon hasIconType] && icon.iconType == 741) {
-                        if ([((YTIStringRun *)(compactLinkRenderer.title.runsArray.firstObject)).text isEqualToString:@"Downloads"]) {
-                            DownloadsController *downloadsController = [[DownloadsController alloc] init];
-                            [self.navigationController pushViewController:downloadsController animated:YES];
-                            return; // Prevent opening the Your Videos menu
-                        }
-                    }
-                }
-            }
-            if ([itemSectionSupportedRenderers hasCompactListItemRenderer]) {
-                YTICompactListItemRenderer *compactListItemRenderer = itemSectionSupportedRenderers.compactListItemRenderer;
-                if ([compactListItemRenderer hasThumbnail]) {
-                    YTICompactListItemThumbnailSupportedRenderers *thumbnail = compactListItemRenderer.thumbnail;
-                    if ([thumbnail hasIconThumbnailRenderer]) {
-                        YTIIconThumbnailRenderer *iconThumbnailRenderer = thumbnail.iconThumbnailRenderer;
-                        if ([iconThumbnailRenderer hasIcon]) {
-                            YTIIcon *icon = iconThumbnailRenderer.icon;
-                            if ([icon hasIconType] && icon.iconType == 658) {
-                                yourVideosCellIndex = [subContentsArray indexOfObject:itemSectionSupportedRenderers];
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (yourVideosCellIndex != -1 && subContentsArray[yourVideosCellIndex].accessibilityLabel == nil) {
-            YTIItemSectionSupportedRenderers *newItemSectionSupportedRenderers = [subContentsArray[yourVideosCellIndex] copy];
-            ((YTIStringRun *)(newItemSectionSupportedRenderers.compactListItemRenderer.title.runsArray.firstObject)).text = @"Downloads";
-            newItemSectionSupportedRenderers.compactListItemRenderer.thumbnail.iconThumbnailRenderer.icon.iconType = 147;
-            [subContentsArray insertObject:newItemSectionSupportedRenderers atIndex:yourVideosCellIndex + 1];
-            subContentsArray[yourVideosCellIndex].accessibilityLabel = @"uYouEnhanced Modified";
-            yourVideosCellIndex = -1;
-        }
-    }
-}
-- (void)loadWithModel:(YTISectionListRenderer *)model {
-    [self uYouEnhancedFakePremiumModel:model];
-    %orig;
-}
-- (void)setupSectionListWithModel:(YTISectionListRenderer *)model isLoadingMore:(BOOL)isLoadingMore isRefreshingFromContinuation:(BOOL)isRefreshingFromContinuation {
-    [self uYouEnhancedFakePremiumModel:model];
-    %orig;
-}
-%end
-%end
-
 //ex
 %ctor {
     %init;
 
     if (IS_ENABLED(@"noAds_enabled")) {
         %init(gnoAds);
-    }
-    if (IS_ENABLED(@"premiumYTLogo_enabled")) {
-        %init(gFakePremium);
     }
 
     // Change the default value of some options
