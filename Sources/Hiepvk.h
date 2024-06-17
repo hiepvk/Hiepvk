@@ -66,26 +66,3 @@
 - (void)showMessageMainThread:(id)message;
 + (id)sharedInstance;
 @end
-
-@interface YTIIcon (uYouEnhanced)
-    - (bool)hasIconType;
-@end
-@interface YTICompactLinkRenderer : GPBMessage
-    @property (nonatomic, strong) YTIIcon *icon;
-    @property (nonatomic, strong) YTIFormattedString *title;
-    @property (nonatomic, strong) YTICompactListItemThumbnailSupportedRenderers *thumbnail;
-    - (bool)hasIcon;
-    - (bool)hasThumbnail;
-@end
-@interface YTIItemSectionSupportedRenderers (uYouEnhanced)
-    @property(readonly, nonatomic) YTICompactLinkRenderer *compactLinkRenderer;
-    @property(readonly, nonatomic) YTICompactListItemRenderer *compactListItemRenderer;
-    - (bool)hasCompactLinkRenderer;
-    - (bool)hasCompactListItemRenderer;
-@end
-@interface YTAppCollectionViewController : YTInnerTubeCollectionViewController
-- (void)uYouEnhancedFakePremiumModel:(YTISectionListRenderer *)model;
-@end
-@interface YTInnerTubeCollectionViewController (uYouEnhanced)
-    @property(readonly, nonatomic) YTISectionListRenderer *model;
-@end
