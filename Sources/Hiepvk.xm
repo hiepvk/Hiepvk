@@ -466,6 +466,9 @@ NSData *cellDividerData;
     if (IS_ENABLED(@"noAds_enabled")) {
         %init(gnoAds);
     }
+    if (IS_ENABLED(@"youTabFakePremium_enabled")) {
+        %init(gFakePremium);
+    }
 
     // Change the default value of some options
     NSArray *allKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
