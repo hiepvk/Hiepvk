@@ -352,18 +352,14 @@ NSData *cellDividerData;
 
 %end
 
-// Fake premium - @bhackel
-%group gFakePremium
-// YouTube Premium Logo - @arichornlover & bhackel
+// YouTube Premium Logo - @arichornlover & @bhackel
+%group gPremiumYouTubeLogo
 %hook YTHeaderLogoController
 - (void)setTopbarLogoRenderer:(YTITopbarLogoRenderer *)renderer {
-    // Modify the type of the icon before setting the renderer
     YTIIcon *iconImage = renderer.iconImage;
-    iconImage.iconType = 537; // magic number for Premium icon, hopefully it doesnt change. 158 is default logo.
-    // Use this modified renderer
+    iconImage.iconType = 537;
     %orig;
 }
-// For when spoofing before 18.34.5
 - (void)setPremiumLogo:(BOOL)isPremiumLogo {
     isPremiumLogo = YES;
     %orig;
@@ -372,16 +368,10 @@ NSData *cellDividerData;
     return YES;
 }
 %end
+
 %hook YTAppCollectionViewController
-/**
-  * Modify a given renderer data model to fake premium in the You tab
-  * Replaces the "Get YouTube Premium" cell with a "Your Premium benefits" cell
-  * and adds a "Downloads" cell below the "Your videos" cell
-  * @param model The model for the You tab
-  */
 %new
 - (void)uYouEnhancedFakePremiumModel:(YTISectionListRenderer *)model {
-    // Don't do anything if the version is too low
     Class YTVersionUtilsClass = %c(YTVersionUtils);
     NSString *appVersion = [YTVersionUtilsClass performSelector:@selector(appVersion)];
     NSComparisonResult result = [appVersion compare:@"18.35.4" options:NSNumericSearch];
@@ -390,30 +380,25 @@ NSData *cellDividerData;
     }
     NSUInteger yourVideosCellIndex = -1;
     NSMutableArray <YTISectionListSupportedRenderers *> *overallContentsArray = model.contentsArray;
-    // Check each item in the overall array - this represents the whole You page
     YTISectionListSupportedRenderers *supportedRenderers;
     for (supportedRenderers in overallContentsArray) {
         YTIItemSectionRenderer *itemSectionRenderer = supportedRenderers.itemSectionRenderer;
-        // Check each subobject - this would be visible as a cell in the You page
         NSMutableArray <YTIItemSectionSupportedRenderers *> *subContentsArray = itemSectionRenderer.contentsArray;
         YTIItemSectionSupportedRenderers *itemSectionSupportedRenderers;
         for (itemSectionSupportedRenderers in subContentsArray) {
-            // Check for Get Youtube Premium cell, which is of type CompactLinkRenderer
             if ([itemSectionSupportedRenderers hasCompactLinkRenderer]) {
                 YTICompactLinkRenderer *compactLinkRenderer = [itemSectionSupportedRenderers compactLinkRenderer];
-                // Check for an icon in this cell
                 if ([compactLinkRenderer hasIcon]) {
                     YTIIcon *icon = [compactLinkRenderer icon];
-                    // Check if the icon is for the premium advertisement - 117 is magic number for the icon
-                    if ([icon hasIconType] && icon.iconType == 117) {
-                        // Modify the icon type to be Premium
-                        icon.iconType = 741; // Magic number for premium icon
-                        // Modify the text
-                        ((YTIStringRun *)(compactLinkRenderer.title.runsArray.firstObject)).text = LOC(@"FAKE_YOUR_PREMIUM_BENEFITS");
+                    if ([icon hasIconType] && icon.iconType == 741) {
+                        if ([((YTIStringRun *)(compactLinkRenderer.title.runsArray.firstObject)).text isEqualToString:@"Downloads"]) {
+                            DownloadsController *downloadsController = [[DownloadsController alloc] init];
+                            [self.navigationController pushViewController:downloadsController animated:YES];
+                            return; // Prevent opening the Your Videos menu
+                        }
                     }
                 }
             }
-            // Check for Your Videos cell using similar logic explained above
             if ([itemSectionSupportedRenderers hasCompactListItemRenderer]) {
                 YTICompactListItemRenderer *compactListItemRenderer = itemSectionSupportedRenderers.compactListItemRenderer;
                 if ([compactListItemRenderer hasThumbnail]) {
@@ -423,7 +408,6 @@ NSData *cellDividerData;
                         if ([iconThumbnailRenderer hasIcon]) {
                             YTIIcon *icon = iconThumbnailRenderer.icon;
                             if ([icon hasIconType] && icon.iconType == 658) {
-                                // Store the index of this cell
                                 yourVideosCellIndex = [subContentsArray indexOfObject:itemSectionSupportedRenderers];
                             }
                         }
@@ -432,27 +416,20 @@ NSData *cellDividerData;
             }
         }
         if (yourVideosCellIndex != -1 && subContentsArray[yourVideosCellIndex].accessibilityLabel == nil) {
-            // Create the fake Downloads page by copying the Your Videos page and modifying it
-            // Note that this must be done outside the loop to avoid a runtime exception
-            // TODO Link this to the uYou downloads page
             YTIItemSectionSupportedRenderers *newItemSectionSupportedRenderers = [subContentsArray[yourVideosCellIndex] copy];
-            ((YTIStringRun *)(newItemSectionSupportedRenderers.compactListItemRenderer.title.runsArray.firstObject)).text = LOC(@"FAKE_DOWNLOADS");
+            ((YTIStringRun *)(newItemSectionSupportedRenderers.compactListItemRenderer.title.runsArray.firstObject)).text = @"Downloads";
             newItemSectionSupportedRenderers.compactListItemRenderer.thumbnail.iconThumbnailRenderer.icon.iconType = 147;
-            // Insert this cell after the Your Videos cell
             [subContentsArray insertObject:newItemSectionSupportedRenderers atIndex:yourVideosCellIndex + 1];
-            // Inject a note to not modify this again
             subContentsArray[yourVideosCellIndex].accessibilityLabel = @"uYouEnhanced Modified";
             yourVideosCellIndex = -1;
         }
     }
 }
 - (void)loadWithModel:(YTISectionListRenderer *)model {
-    // This method is called on first load of the You page
     [self uYouEnhancedFakePremiumModel:model];
     %orig;
 }
 - (void)setupSectionListWithModel:(YTISectionListRenderer *)model isLoadingMore:(BOOL)isLoadingMore isRefreshingFromContinuation:(BOOL)isRefreshingFromContinuation {
-    // This method is called on refresh of the You page
     [self uYouEnhancedFakePremiumModel:model];
     %orig;
 }
