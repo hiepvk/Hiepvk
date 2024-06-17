@@ -17,9 +17,6 @@
 "PLAY_BACK" = "Background playback";
 "PLAY_BACK_DESC" = "Enables background playback.";
 
-"NO_LOGO" = "Remove YouTube logo";
-"NO_LOGO_DESC" = "Removes YouTube logo in the Navigation bar.";
-
 "PRE_LOGO" = "Set Premium YouTube logo";
 "PRE_LOGO_DESC" = "Sets Premium YouTube logo in the Navigation bar.";
 
