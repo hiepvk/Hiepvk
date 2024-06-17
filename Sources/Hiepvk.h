@@ -112,3 +112,6 @@
 @interface YTInnerTubeCollectionViewController (uYouEnhanced)
 @property(readonly, nonatomic) YTISectionListRenderer *model;
 @end
+
+@interface YTAppCollectionViewController : YTInnerTubeCollectionViewController
+@end
