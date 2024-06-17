@@ -353,7 +353,7 @@ NSData *cellDividerData;
 %end
 
 // YouTube Premium Logo - @arichornlover & @bhackel
-%group gPremiumYouTubeLogo
+%group gFakePremium
 %hook YTHeaderLogoController
 - (void)setTopbarLogoRenderer:(YTITopbarLogoRenderer *)renderer {
     YTIIcon *iconImage = renderer.iconImage;
