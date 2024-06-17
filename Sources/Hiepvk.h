@@ -115,3 +115,7 @@
 
 @interface YTAppCollectionViewController : YTInnerTubeCollectionViewController
 @end
+
+@interface YTInnerTubeCollectionViewController : YTCollectionViewController
+@property (nonatomic, strong) NSMutableArray *sectionRenderers;
+@end
