@@ -352,6 +352,23 @@ NSData *cellDividerData;
 
 %end
 
+// Hide YouTube Logo - @dayanch96
+%group gHideYouTubeLogo
+%hook YTHeaderLogoController
+- (YTHeaderLogoController *)init {
+    return NULL;
+}
+%end
+%hook YTNavigationBarTitleView
+- (void)layoutSubviews {
+    %orig;
+    if (self.subviews.count > 1 && [self.subviews[1].accessibilityIdentifier isEqualToString:@"id.yoodle.logo"]) {
+        self.subviews[1].hidden = YES;
+    }
+}
+%end
+%end
+
 // Fake premium - @bhackel
 %group gFakePremium
 // YouTube Premium Logo - @arichornlover & bhackel
@@ -465,6 +482,9 @@ NSData *cellDividerData;
 
     if (IS_ENABLED(@"noAds_enabled")) {
         %init(gnoAds);
+    }
+    if (IS_ENABLED(@"hideYouTubeLogo_enabled")) {
+        %init(gHideYouTubeLogo);
     }
     if (IS_ENABLED(@"premiumYTLogo_enabled")) {
         %init(gFakePremium);
