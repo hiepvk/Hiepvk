@@ -85,7 +85,6 @@ extern NSBundle *HiepvkBundle();
 
     SWITCH_ITEM2(LOC(@"NO_ADS"), LOC(@"NO_ADS_DESC"), @"noAds_enabled");
     SWITCH_ITEM(LOC(@"PLAY_BACK"), LOC(@"PLAY_BACK_DESC"), @"backgroundPlayback_enabled");
-    SWITCH_ITEM2(LOC(@"PRE_LOGO"), LOC(@"PRE_LOGO_DESC"), @"premiumYTLogo_enabled");
     SWITCH_ITEM2(LOC(@"HIDE_HOVER_CARD"), LOC(@"HIDE_HOVER_CARD_DESC"), @"hideHoverCards_enabled");
     SWITCH_ITEM2(LOC(@"YOU_ARE_THERE"), LOC(@"YOU_ARE_THERE_DESC"), @"YouAreThere_enabled");
     SWITCH_ITEM(LOC(@"HIDE_PAID_PROMOTION_CARDS"), LOC(@"HIDE_PAID_PROMOTION_CARDS_DESC"), @"hidePaidPromotionCard_enabled");
