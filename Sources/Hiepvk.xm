@@ -466,7 +466,7 @@ NSData *cellDividerData;
     if (IS_ENABLED(@"noAds_enabled")) {
         %init(gnoAds);
     }
-    if (IS_ENABLED(@"youTabFakePremium_enabled")) {
+    if (IS_ENABLED(@"premiumYTLogo_enabled")) {
         %init(gFakePremium);
     }
 
