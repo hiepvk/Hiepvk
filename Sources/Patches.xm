@@ -49,9 +49,3 @@
 - (BOOL)shouldShowUpgrade { return NO;}
 - (BOOL)shouldShowUpgradeDialog { return NO;}
 %end
-
-// Hide YouTube Logo
-%hook YTHeaderView
-- (void)setCustomTitleView:(UIView *)customTitleView { if (!IS_ENABLED(@"noYTLogo_enabled")) %orig; }
-- (void)setTitle:(NSString *)title { IS_ENABLED(@"noYTLogo_enabled") ? %orig(@"") : %orig; }
-%end
