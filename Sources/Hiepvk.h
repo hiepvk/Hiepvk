@@ -66,3 +66,8 @@
 - (void)showMessageMainThread:(id)message;
 + (id)sharedInstance;
 @end
+
+// Enable Premium logo - @bhackel
+@interface YTITopbarLogoRenderer : NSObject
+@property(readonly, nonatomic) YTIIcon *iconImage;
+@end
