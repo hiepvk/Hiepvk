@@ -71,3 +71,6 @@
 @interface YTITopbarLogoRenderer : NSObject
 @property(readonly, nonatomic) YTIIcon *iconImage;
 @end
+
+@interface YTNavigationBarTitleView : UIView
+@end
