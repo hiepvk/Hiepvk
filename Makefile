@@ -63,5 +63,6 @@ before-all::
 		fi; \
 	fi;
 else
-
+before-package::
+	@mkdir -p $(THEOS_STAGING_DIR)/Library/Application\ Support
 endif
