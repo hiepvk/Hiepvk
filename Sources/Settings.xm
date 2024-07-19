@@ -80,22 +80,6 @@ extern NSBundle *HiepvkBundle();
     ];
     [sectionItems addObject:exitYT];
 
-    # pragma mark - General
-    SECTION_HEADER(LOC(@"GENERAL"));
-
-    SWITCH_ITEM2(LOC(@"NO_ADS"), LOC(@"NO_ADS_DESC"), @"noAds_enabled");
-    SWITCH_ITEM(LOC(@"PLAY_BACK"), LOC(@"PLAY_BACK_DESC"), @"backgroundPlayback_enabled");
-    SWITCH_ITEM2(LOC(@"HIDE_HOVER_CARD"), LOC(@"HIDE_HOVER_CARD_DESC"), @"hideHoverCards_enabled");
-    SWITCH_ITEM2(LOC(@"YOU_ARE_THERE"), LOC(@"YOU_ARE_THERE_DESC"), @"YouAreThere_enabled");
-    SWITCH_ITEM(LOC(@"HIDE_PAID_PROMOTION_CARDS"), LOC(@"HIDE_PAID_PROMOTION_CARDS_DESC"), @"hidePaidPromotionCard_enabled");
-
-    # pragma mark - Shorts
-    SECTION_HEADER(LOC(@"SHORTS"));
-
-    SWITCH_ITEM(LOC(@"UN_SHORTS"), LOC(@"UN_SHORTS_DESC"), @"un_shorts_enabled");
-    SWITCH_ITEM2(LOC(@"HIDE_SUPER_THANKS"), LOC(@"HIDE_SUPER_THANKS_DESC"), @"hideBuySuperThanks_enabled");
-    SWITCH_ITEM2(LOC(@"HIDE_SUBCRIPTIONS"), LOC(@"HIDE_SUBCRIPTIONS_DESC"), @"hideSubcriptions_enabled");
-    SWITCH_ITEM2(LOC(@"DISABLE_RESUME_TO_SHORTS"), LOC(@"DISABLE_RESUME_TO_SHORTS_DESC"), @"disableResumeToShorts");
 
     // title
 
