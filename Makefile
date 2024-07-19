@@ -37,10 +37,3 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 CODESIGN_IPA = 0
 
-
-
-ifneq ($(JAILBROKEN),1)
-
-before-package::
-	@mkdir -p $(THEOS_STAGING_DIR)/Library/Application\ Support; cp -r Localizations/Hiepvk.bundle $(THEOS_STAGING_DIR)/Library/Application\ Support/
-endif
