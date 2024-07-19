@@ -38,28 +38,28 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 CODESIGN_IPA = 0
 
-YTLITE_PATH = Tweaks/YTLite
-YTLITE_DEB = $(YTLITE_PATH)/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb
-YTLITE_DYLIB = $(YTLITE_PATH)/Library/MobileSubstrate/DynamicLibraries/YTLite.dylib
-YTLITE_BUNDLE = $(YTLITE_PATH)/Library/Application\ Support/YTLite.bundle
+UYOU_PATH = Tweaks/uYou
+UYOU_DEB = $(UYOU_PATH)/com.miro.uyou_$(UYOU_VERSION)_iphoneos-arm.deb
+UYOU_DYLIB = $(UYOU_PATH)/Library/MobileSubstrate/DynamicLibraries/uYou.dylib
+UYOU_BUNDLE = $(UYOU_PATH)/Library/Application\ Support/uYouBundle.bundle
 
 internal-clean::
-	@rm -rf $(YTLITE_PATH)/*
+	@rm -rf $(UYOU_PATH)/*
 
 ifneq ($(JAILBROKEN),1)
 before-all::
-	@if [[ ! -f $(YTLITE_DEB) ]]; then \
-		rm -rf $(YTLITE_PATH)/*; \
-		$(PRINT_FORMAT_BLUE) "Downloading YTLite"; \
+	@if [[ ! -f $(UYOU_DEB) ]]; then \
+		rm -rf $(UYOU_PATH)/*; \
+		$(PRINT_FORMAT_BLUE) "Downloading uYou"; \
 	fi
 before-all::
-	@if [[ ! -f $(YTLITE_DEB) ]]; then \
- 		curl -s https://raw.githubusercontent.com/hiepvk/ipa/main/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -o $(YTLITE_DEB); \
+	@if [[ ! -f $(UYOU_DEB) ]]; then \
+ 		curl -s https://repo.miro92.com/debs/com.miro.uyou_3.0.3_iphoneos-arm.deb -o $(UYOU_DEB); \
  	fi; \
-	if [[ ! -f $(YTLITE_DYLIB) || ! -d $(YTLITE_BUNDLE) ]]; then \
-		tar -xf Tweaks/YTLite/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -C Tweaks/YTLite; tar -xf Tweaks/YTLite/data.tar* -C Tweaks/YTLite; \
-		if [[ ! -f $(YTLITE_DYLIB) || ! -d $(YTLITE_BUNDLE) ]]; then \
-			$(PRINT_FORMAT_ERROR) "Failed to extract YTLite"; exit 1; \
+	if [[ ! -f $(UYOU_DYLIB) || ! -d $(UYOU_BUNDLE) ]]; then \
+		tar -xf Tweaks/uYou/com.miro.uyou_3.0.3_iphoneos-arm.deb -C Tweaks/uYou; tar -xf Tweaks/uYou/data.tar* -C Tweaks/uYou; \
+		if [[ ! -f $(UYOU_DYLIB) || ! -d $(UYOU_BUNDLE) ]]; then \
+			$(PRINT_FORMAT_ERROR) "Failed to extract uYou"; exit 1; \
 		fi; \
 	fi;
 else
