@@ -7,36 +7,3 @@
 "QUIT_YOUTUBE" = "Quit YouTube";
 
 "RESTART_YOUTUBE" = "Restart YouTube to apply changes";
-
-// GENERAL
-"GENERAL" = "General";
-
-"NO_ADS" = "Remove ads";
-"NO_ADS_DESC" = "Removes in-app ads.";
-
-"PLAY_BACK" = "Background playback";
-"PLAY_BACK_DESC" = "Enables background playback.";
-
-"HIDE_HOVER_CARD" = "Hide End screens hover cards (YTNoHoverCards)";
-"HIDE_HOVER_CARD_DESC" = "Hide the creator End screens (thumbnails) at the end of videos.";
-
-"YOU_ARE_THERE" = "Disable \"Video paused. Continue watching?\"";
-"YOU_ARE_THERE_DESC" = "Disable \"Video paused. Continue watching?\" popup in YouTube app when you play a long video.";
-
-"HIDE_PAID_PROMOTION_CARDS" = "Hide Paid Promotion cards";
-"HIDE_PAID_PROMOTION_CARDS_DESC" = "Hides \"Includes Paid Promotions\" card in promotions included videos.";
-
-// SHORTS
-"SHORTS" = "Shorts";
-
-"UN_SHORTS" = "Hide Shorts";
-"UN_SHORTS_DESC" = "Hides Shorts videos from Homepage, Recommended etc. (Not applied to Watch history)";
-
-"HIDE_SUPER_THANKS" = "Hide \"Buy Super Thanks\" banner";
-"HIDE_SUPER_THANKS_DESC" = "";
-
-"HIDE_SUBCRIPTIONS" = "Hide subscriptions button";
-"HIDE_SUBCRIPTIONS_DESC" = "";
-
-"DISABLE_RESUME_TO_SHORTS" = "Disable resume to Shorts";
-"DISABLE_RESUME_TO_SHORTS_DESC" = "If you close YouTube while watching Shorts, this prevents it from automatically resuming the next time you reopen the app";
