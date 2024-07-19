@@ -37,32 +37,3 @@
 #import "Tweaks/YouTubeHeader/ELMNodeController.h" // YouTube-X
 #import "Tweaks/YouTubeHeader/YTReelModel.h" // YouTube-X
 #import "Tweaks/YouTubeHeader/YTIElementRenderer.h"
-
-#define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
-#define IS_ENABLED(k) [[NSUserDefaults standardUserDefaults] boolForKey:k]
-#define YT_BUNDLE_ID @"com.google.ios.youtube"
-#define YT_NAME @"YouTube"
-
-// IAmYouTube
-@interface SSOConfiguration : NSObject
-@end
-
-// Hide "Buy Super Thanks" banner
-@interface _ASDisplayView : UIView
-@end
-
-// Snack bar
-@interface YTHUDMessage : NSObject
-+ (id)messageWithText:(id)text;
-- (void)setAction:(id)action;
-@end
-
-@interface GOOHUDMessageAction : NSObject
-- (void)setTitle:(NSString *)title;
-- (void)setHandler:(void (^)(id))handler;
-@end
-
-@interface GOOHUDManagerInternal : NSObject
-- (void)showMessageMainThread:(id)message;
-+ (id)sharedInstance;
-@end
