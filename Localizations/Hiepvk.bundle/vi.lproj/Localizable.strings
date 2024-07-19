@@ -7,37 +7,3 @@
 "QUIT_YOUTUBE" = "Đóng YouTube";
 
 "RESTART_YOUTUBE" = "Khởi động lại YouTube để áp dụng các thay đổi";
-
-// GENERAL
-"GENERAL" = "Chung";
-
-"NO_ADS" = "Xoá quảng cáo";
-"NO_ADS_DESC" = "Xoá quảng cáo trong ứng dụng";
-
-"PLAY_BACK" = "Phát trong nền";
-"PLAY_BACK_DESC" = "Cho phép phát trong nền";
-
-"HIDE_HOVER_CARD" = "Ẩn video dạng thumbnails (YTNoHoverCards)";
-"HIDE_HOVER_CARD_DESC" = "Ẩn thumbnail của các video đề xuất xuất hiện ở cuối video.";
-
-"YOU_ARE_THERE" = "Tắt \"Video tạm dừng. Tiếp tục xem?\"";
-"YOU_ARE_THERE_DESC" = "Tắt cửa sổ bật lên \"Video tạm dừng. Tiếp tục xem?\" trong ứng dụng YouTube khi bạn phát một video dài.";
-
-"HIDE_PAID_PROMOTION_CARDS" = "Ẩn banner quảng cáo được trả tiền";
-"HIDE_PAID_PROMOTION_CARDS_DESC" = "Ẩn banner 'Chứa nội dung được trả tiền để quảng cáo' trong một số video.";
-
-// SHORTS
-"SHORTS" = "Shorts";
-
-"UN_SHORTS" = "Ẩn Shorts";
-"UN_SHORTS_DESC" = "Ẩn Shorts khỏi Trang chủ, Được đề xuất, v.v. (Không áp dụng cho Lịch sử xem)";
-
-"HIDE_SUPER_THANKS" = "Ẩn biểu ngữ \"Mua ảnh động Super Thanks\"";
-"HIDE_SUPER_THANKS_DESC" = "Ẩn biểu ngữ \"Mua ảnh động Super Thanks\" trong Shorts.";
-
-"HIDE_SUBCRIPTIONS" = "Ẩn nút Đăng ký kênh";
-"HIDE_SUBCRIPTIONS_DESC" = "Ẩn nút Đăng ký kênh khi tạm dừng Shorts.";
-
-"DISABLE_RESUME_TO_SHORTS" = "Tắt tính năng tự động tiếp tục Shorts";
-"DISABLE_RESUME_TO_SHORTS_DESC" = "Nếu bạn thoát YouTube trong khi đang xem video Shorts, video Shorts đó sẽ không tự động phát khi bạn mở lại YouTube.";
-
