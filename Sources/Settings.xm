@@ -81,6 +81,10 @@ extern NSBundle *HiepvkBundle();
     [sectionItems addObject:exitYT];
 
 
+# pragma mark - Hiepvk
+    SECTION_HEADER(LOC(@"Hiepvk"));
+
+
     // title
 
     if ([settingsViewController respondsToSelector:@selector(setSectionItems:forCategory:title:icon:titleDescription:headerHidden:)])
