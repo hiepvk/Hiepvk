@@ -38,9 +38,9 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 CODESIGN_IPA = 0
 
-YTLITE_PATH = Tweaks/uYou
+YTLITE_PATH = Tweaks/YTLite
 YTLITE_DEB = $(YTLITE_PATH)/com.miro.uyou_$(UYOU_VERSION)_iphoneos-arm.deb
-YTLITE_DYLIB = $(YTLITE_PATH)/Library/MobileSubstrate/DynamicLibraries/uYou.dylib
+YTLITE_DYLIB = $(YTLITE_PATH)/Library/MobileSubstrate/DynamicLibraries/YTLite.dylib
 YTLITE_BUNDLE = $(YTLITE_PATH)/Library/Application\ Support/uYouBundle.bundle
 
 internal-clean::
