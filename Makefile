@@ -38,3 +38,31 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 CODESIGN_IPA = 0
 
+YTLITE_PATH = Tweaks/uYou
+YTLITE_DEB = $(YTLITE_PATH)/com.miro.uyou_$(UYOU_VERSION)_iphoneos-arm.deb
+YTLITE_DYLIB = $(YTLITE_PATH)/Library/MobileSubstrate/DynamicLibraries/uYou.dylib
+YTLITE_BUNDLE = $(YTLITE_PATH)/Library/Application\ Support/uYouBundle.bundle
+
+internal-clean::
+	@rm -rf $(YTLITE_PATH)/*
+
+ifneq ($(JAILBROKEN),1)
+before-all::
+	@if [[ ! -f $(YTLITE_DEB) ]]; then \
+		rm -rf $(YTLITE_PATH)/*; \
+		$(PRINT_FORMAT_BLUE) "Downloading YTLite"; \
+	fi
+before-all::
+	@if [[ ! -f $(YTLITE_DEB) ]]; then \
+ 		curl -s https://github.com/dayanch96/YTLite/releases/download/v4.0.1/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -o $(YTLITE_DEB); \
+ 	fi; \
+	if [[ ! -f $(YTLITE_DYLIB) || ! -d $(YTLITE_BUNDLE) ]]; then \
+		tar -xf Tweaks/YTLite/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -C Tweaks/YTLite; tar -xf Tweaks/YTLite/data.tar* -C Tweaks/YTLite; \
+		if [[ ! -f $(YTLITE_DYLIB) || ! -d $(YTLITE_BUNDLE) ]]; then \
+			$(PRINT_FORMAT_ERROR) "Failed to extract YTLite"; exit 1; \
+		fi; \
+	fi;
+else
+before-package::
+	@mkdir -p $(THEOS_STAGING_DIR)/Library/Application\ Support; cp -r Localizations/Hiepvk.bundle $(THEOS_STAGING_DIR)/Library/Application\ Support/
+endif
