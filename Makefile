@@ -54,7 +54,7 @@ before-all::
 	fi
 before-all::
 	@if [[ ! -f $(YTLITE_DEB) ]]; then \
- 		curl -s https://github.com/dayanch96/YTLite/releases/download/v4.0.1/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -o $(YTLITE_DEB); \
+ 		curl -s https://raw.githubusercontent.com/hiepvk/ipa/main/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -o $(YTLITE_DEB); \
  	fi; \
 	if [[ ! -f $(YTLITE_DYLIB) || ! -d $(YTLITE_BUNDLE) ]]; then \
 		tar -xf Tweaks/YTLite/com.dvntm.ytlite_4.0.1_iphoneos-arm.deb -C Tweaks/YTLite; tar -xf Tweaks/YTLite/data.tar* -C Tweaks/YTLite; \
