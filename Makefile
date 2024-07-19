@@ -39,7 +39,7 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 CODESIGN_IPA = 0
 
 UYOU_PATH = Tweaks/uYou
-UYOU_DEB = $(UYOU_PATH)/com.miro.uyou_$(UYOU_VERSION)_iphoneos-arm.deb
+UYOU_DEB = $(UYOU_PATH)/com.miro.uyou_3.0.3_iphoneos-arm.deb
 UYOU_DYLIB = $(UYOU_PATH)/Library/MobileSubstrate/DynamicLibraries/uYou.dylib
 UYOU_BUNDLE = $(UYOU_PATH)/Library/Application\ Support/uYouBundle.bundle
 
