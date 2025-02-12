@@ -29,3 +29,7 @@
 	path = Tweaks/YTUHD
 	url = https://github.com/PoomSmart/YTUHD.git
 	branch = master
+[submodule "Tweaks/PSHeader"]
+	path = Tweaks/PSHeader
+	url = https://github.com/PoomSmart/PSHeader.git
+	branch = master
