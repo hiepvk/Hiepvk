@@ -5,10 +5,6 @@
 [submodule "Tweaks/RemoteLog"]
 	path = Tweaks/RemoteLog
 	url = https://github.com/Muirey03/RemoteLog.git
-[submodule "Extensions"]
-	path = Extensions
-	url = https://github.com/CokePokes/YoutubeExtensions.git
-	branch = main
 [submodule "Tweaks/YouPiP"]
 	path = Tweaks/YouPiP
 	url = https://github.com/PoomSmart/YouPiP.git
